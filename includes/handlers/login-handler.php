@@ -10,6 +10,7 @@ if(isset($_POST['loginButton'])){
   $result = $account->login($userName, $password);
 
   if($result == true){    //Not necessary, but visually helpful
+    $_SESSION['userLoggedIn'] = $userName;    //Session Variable userLoggedIn set to username
     header("Location: index.php");
   }
 }

@@ -1,0 +1,74 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+.background {
+  background-color: #000;
+  background-image: url(../images/bg.jpg);
+  background-position: center;
+  background-size: cover;
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+/*Default Code*/
+.loginContainer * {
+  color: #fff;
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  font-weight: normal;
+  line-height: 1em;   /* Current font-size x1 */
+  box-sizing: border-box;   /* Account for padding and margins when setting width */
+}
+
+.loginContainer {
+  width: 80%;
+  margin: 0 auto;
+  popsition: relative;    /* Relative to it's parent */
+  max-width: 1024px;
+}
+
+/* Compatible Placeholder Code */
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #ccc;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #ccc;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #ccc;
+}
+
+.inputContainer {
+  width: 400px;
+  padding: 45px;
+  float: left;
+  border-right: 1px solid #999;
+}
+
+.inputContainer h2 {
+  text-align: center;
+}
+
+
+/* Styles input fields with specified types */
+.inputContainer input[type="text"], input[type="email"], input[type="password"] {
+   display: block;
+   background-color: transparent;
+   border: 0;
+   border-bottom: 1px solid #fff;
+   height: 27px;
+   line-height: 27px;
+   width: 100%;
+}
+
+.inputContainer label {
+  color: #ff884d;
+  font-size: 13px;
+  margin-top: 15px;
+}
