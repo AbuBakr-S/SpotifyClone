@@ -18,6 +18,10 @@ function sanitiseFormString($inputText){
   return $inputText;
 }
 
+function sanitiseFormEmail($inputText){
+  $inputText = strtolower($inputText);    //Lowercase All
+  return $inputText;
+}
 
 //If register btn was pressed...SANITISE USER INPUT
 if(isset($_POST['registerButton'])){
@@ -27,8 +31,8 @@ if(isset($_POST['registerButton'])){
 
   $firstName = sanitiseFormString($_POST['first_Name']);
   $lastName = sanitiseFormString($_POST['last_Name']);
-  $email1 = sanitiseFormString($_POST['email_1']);
-  $email2 = sanitiseFormString($_POST['email_2']);
+  $email1 = sanitiseFormEmail($_POST['email_1']);
+  $email2 = sanitiseFormEmail($_POST['email_2']);
 
   $password1 = sanitiseFormPassword($_POST['password_1']);
   $password2 = sanitiseFormPassword($_POST['password_2']);
