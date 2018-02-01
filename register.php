@@ -21,9 +21,40 @@
   <head>
     <meta charset="utf-8">
     <title>Welcome to Spotify Clone</title>
+    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/register.css">
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- JS -->
+    <script src="assets/js/register.js"></script>
   </head>
   <body>
+
+    <?php
+
+    //Use PHP to determine which form to Show...
+
+    //If Register btn was pressed, show Register Form - Fix any errors
+    //Else, show the Log in form and hide the Register Form
+    //Once page is ready and dependancies have loaded
+    if(isset($_POST['registerButton'])) {
+      echo '<script>
+              $(document).ready(function(){
+                $("#loginForm").hide();
+                $("#registerForm").show();
+              });
+            </script>';
+    } else {
+      echo '<script>
+              $(document).ready(function(){
+                $("#loginForm").show();
+                $("#registerForm").hide();
+              });
+            </script>';
+    }
+
+    ?>
 
     <!-- Background Image -->
     <div class="background">
@@ -31,7 +62,7 @@
         <div class="inputContainer">
 
           <!-- Login Form -->
-          <form id="loginForm" class="" action="register.php" method="POST">
+          <form id="loginForm" action="register.php" method="POST">
           <h2>Login to your account</h2>
           <p>
             <?php echo $account->getError(Constants::$loginFailed); ?>
@@ -45,10 +76,14 @@
 
           <button type="submit" name="loginButton">Log In</button>
 
+          <div class="accountPrompt">
+              <span id="hideLogin">Don't have an account yet? Sign up here.</span>
+          </div>
+
           </form>
 
           <!-- Register Form -->
-          <form id="registerForm" class="" action="register.php" method="POST">
+          <form id="registerForm" action="register.php" method="POST">
             <h2>Create your free account</h2>
             <p>
               <?php echo $account->getError(Constants::$userNameLength);    //Check Constants for error msgs ?>
@@ -97,6 +132,11 @@
             </p>
 
             <button type="submit" name="registerButton">Sign Up</button>
+
+            <div class="accountPrompt">
+                <span id="hideRegister">Already have an account? Log in here.</span>
+            </div>
+
           </form>
         </div>
       </div>

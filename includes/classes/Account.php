@@ -83,14 +83,14 @@
     }
 
     private function validateFirstName($fn){
-      if(strlen($fn) > 25 || strlen($fn) < 5){
+      if(strlen($fn) > 25 || strlen($fn) < 2){
           array_push($this->errorArray, Constants::$firstNameLength);
           return;
       }
     }
 
     private function validateLastName($ln){
-      if(strlen($ln) > 25 || strlen($ln) < 5){
+      if(strlen($ln) > 25 || strlen($ln) < 2){
           array_push($this->errorArray, Constants::$lastNameLength);
           return;
       }

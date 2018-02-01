@@ -72,3 +72,39 @@ html, body {
   font-size: 13px;
   margin-top: 15px;
 }
+
+.inputContainer button {
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 250px;
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin: 20px auto;
+  height: 40px;
+  width: 100%;
+}
+
+.inputContainer button:hover {
+  cursor: pointer;
+}
+
+.accountPrompt {
+  text-align: center;
+}
+
+.accountPrompt span {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.accountPrompt span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Hide Register form Default */
+#registerForm, #loginForm{
+  display: none;
+}
