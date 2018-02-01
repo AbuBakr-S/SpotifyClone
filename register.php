@@ -24,7 +24,9 @@
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/register.css">
 
-    <!-- JQuery -->
+    <!-- Font Awesome CDN (Web Fonts with CSS) -->
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!-- JQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- JS -->
     <script src="assets/js/register.js"></script>
@@ -61,13 +63,15 @@
       <div class="loginContainer">
         <div class="inputContainer">
 
+          <!-- LEFT SIDE FORM -->
+
           <!-- Login Form -->
           <form id="loginForm" action="register.php" method="POST">
           <h2>Login to your account</h2>
           <p>
             <?php echo $account->getError(Constants::$loginFailed); ?>
             <label for="loginUserName">Username:</label>
-            <input id="loginUserName" type="text" name="login_User_Name" required>
+            <input id="loginUserName" type="text" name="login_User_Name" value="<?php getInputValue('login_User_Name'); ?>" required>
           </p>
           <p>
             <label for="loginPassword">Password:</label>
@@ -113,7 +117,6 @@
             </p>
 
             <p>
-
               <label for="confirmEmail">Confirm Email:</label>
               <input id="confirmEmail" type="email" name="email_2" value="<?php getInputValue('email_2'); ?>" required>
             </p>
@@ -139,6 +142,18 @@
 
           </form>
         </div>
+
+        <!-- RIGHT SIDE TEXT -->
+        <div class="loginText">
+            <h1>Get Great Nasheeds, Right Now!</h1>
+            <h2>Listen to loads of Nasheeds for free!</h2>
+            <ul>
+              <li><i class="fas fa-check"></i>Discover Nasheeds from Talented Artitst</li>
+              <li><i class="fas fa-check"></i>Create your own Playlists</li>
+              <li><i class="fas fa-check"></i>Follow Artists to keep up to date</li>
+            </ul>
+        </div>
+
       </div>
     </div>
 

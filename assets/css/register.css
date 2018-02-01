@@ -68,9 +68,11 @@ html, body {
 }
 
 .inputContainer label {
+  display: block;
   color: #ff884d;
   font-size: 13px;
   margin-top: 15px;
+  font-weight: bold;
 }
 
 .inputContainer button {
@@ -107,4 +109,42 @@ html, body {
 /* Hide Register form Default */
 #registerForm, #loginForm{
   display: none;
+}
+
+/* RIGHT SIDE TEXT */
+.loginText {
+  padding: 45px;
+  display: table-cell;
+}
+
+.loginText h1 {
+  color: #07d159;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.loginText h2 {
+  margin: 35px 0;
+}
+
+.loginText ul {
+  padding: 0;
+}
+
+.loginText li {
+  font-size: 20px;
+  list-style-type: none;
+  padding: 10px;
+}
+
+.inputContainer .errorMessage {
+  color: #07d159;
+  font-size: 12px;
+  display: block;
+}
+
+/* FONT AWESOME ICONS */
+.fas {
+  margin-right: 10px;
+  color: #07d159;
 }
