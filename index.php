@@ -14,8 +14,15 @@ if(isset($_SESSION['userLoggedIn'])){
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body>
-    Salaam!
+
+    <div class="nowPlayingBarContainer">
+
+    </div>
+
+
+
   </body>
 </html>
