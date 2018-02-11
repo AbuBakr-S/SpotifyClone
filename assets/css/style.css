@@ -4,6 +4,12 @@ html, body {
   height: 100%;
 }
 
+/* Default Font style */
+* {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+
 .nowPlayingBarContainer {
   width: 100%;
   background-color: #282828;
@@ -37,6 +43,7 @@ html, body {
 
 .nowPlayingBar .content {
   width: 100%;
+  height: 57px;
 }
 
 .playerControls .buttons {
@@ -103,4 +110,27 @@ html, body {
 
 .playbackBar .progressBar {
   margin-top: 3px;
+}
+
+.nowPlayingLeft .albumArtwork {
+  height: 100%;
+  max-width: 57px;
+  margin-right: 15px;
+  float: left;
+  background-size: cover;   /* Scale img to be largest size possible to cover space */
+}
+
+.nowPlayingLeft .trackInfo {
+  display: table;
+}
+
+.nowPlayingLeft .trackInfo .trackName span {
+  margin: 6px 0;
+  display: inline-block;    /* Allows you to specify width & height */
+  width: 100%;
+}
+
+.nowPlayingLeft .trackInfo .artistName span {
+  font-size: 12px;
+  color: #a0a0a0;
 }

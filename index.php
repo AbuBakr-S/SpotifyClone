@@ -25,6 +25,24 @@ if(isset($_SESSION['userLoggedIn'])){
         <div class="nowPlayingBar">
             <div class="nowPlayingLeft">
 
+              <div class="content">
+                <span class="albumLink">
+                  <!-- Temp Placeholder Img -->
+                  <img class="albumArtwork" src="http://www.salafi-islam.com/wp-content/uploads/2017/01/The-Best-Islamic-Music.jpg" alt="">
+                </span>
+
+                <div class="trackInfo">
+                  <span class="trackName">
+                    <span>Ya Adheeman</span>
+                  </span>
+
+                  <span class="artistName">
+                    <span>Ahmed Bukhatir</span>
+                  </span>
+                </div>
+
+              </div>
+
             </div>
             <div class="nowPlayingCenter">
 
