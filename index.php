@@ -54,27 +54,27 @@ if(isset($_SESSION['userLoggedIn'])){
                       <i class="fas fa-random"></i>
                     </button>
 
-                    <button class="controlButton previous" title="Previous Button" type="button" name="button">
+                    <button class="controlButton previous" title="Previous Button" type="button" name="previous">
                       <!-- Previous Icon -->
                       <i class="fas fa-step-backward"></i>
                     </button>
 
-                    <button class="controlButton play" title="Play Button" type="button" name="button">
+                    <button class="controlButton play" title="Play Button" type="button" name="play">
                       <!-- Play Icon -->
                       <i class="far fa-play-circle"></i>
                     </button>
 
-                    <button class="controlButton pause" title="Pause Button" type="button" name="button" style="display: none;">
+                    <button class="controlButton pause" title="Pause Button" type="button" name="pause" style="display: none;">
                       <!-- Pause Icon -->
                       <i class="far fa-pause-circle"></i>
                     </button>
 
-                    <button class="controlButton next" title="Next Button" type="button" name="button">
+                    <button class="controlButton next" title="Next Button" type="button" name="next">
                       <!-- Next Icon -->
                       <i class="fas fa-step-forward"></i>
                     </button>
 
-                    <button class="controlButton repeat" title="Repeat Button" type="button" name="button">
+                    <button class="controlButton repeat" title="Repeat Button" type="button" name="repeat">
                       <!-- Repeat Icon -->
                       <i class="fas fa-redo-alt"></i>
                     </button>
@@ -98,7 +98,17 @@ if(isset($_SESSION['userLoggedIn'])){
             </div>
 
             <div class="nowPlayingRight">
+              <div class="volumeBar">
+                <button class="controlButton volume" title="Volume button" type="button" name="volume">
+                  <i class="fas fa-volume-up"></i>
+                </button>
 
+                <div class="progressBarBg">
+                  <!-- The Actual Progress of the Volume Level -->
+                  <div class="progress"></div>
+                </div>
+
+              </div>
             </div>
         </div>
     </div>

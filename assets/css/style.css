@@ -32,6 +32,11 @@ html, body {
   min-width: 180px;
 }
 
+.nowPlayingRight {
+  position: relative;
+  margin-top: 16px;
+}
+
 /* Flex item */
 .nowPlayingCenter {
   width: 40%;
@@ -73,6 +78,10 @@ html, body {
 
 .controlButton i:hover {
   color: #07d159;
+}
+
+.controlButton .fa-volume-up {
+
 }
 /* END */
 
@@ -133,4 +142,20 @@ html, body {
 .nowPlayingLeft .trackInfo .artistName span {
   font-size: 12px;
   color: #a0a0a0;
+}
+
+.volumeBar {
+  width: 180px;
+  position: absolute;
+  right: 0;
+  display: inline-flex;
+}
+
+.volumeBar .progressBar {
+  width: 125px;
+}
+
+/* Align volume level */
+.volumeBar .progressBarBg {
+  margin-top: 9px;
 }
