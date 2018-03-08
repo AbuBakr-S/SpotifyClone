@@ -1,5 +1,10 @@
 <?php
 include("includes/config.php");   //Calls session_start() code. session_destroy() to end
+include("includes/classes/Artist.php");
+include("includes/classes/Album.php");    //Must be after Artist
+include("includes/classes/Track.php");
+
+//  session_destroy();  LOGOUT
 
 //Check to see if Session var is set
 if(isset($_SESSION['userLoggedIn'])){
