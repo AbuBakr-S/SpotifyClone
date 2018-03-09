@@ -29,7 +29,7 @@ $artist = $album->getArtist();
 </div>
 
 <!-- Print Tracklist Names -->
-<div class="trackListContainer">
+<div class="tracklistContainer">
   <ul class="tracklist">
     <?php
       $trackIDArray = $album->getTrackIDs();
@@ -40,7 +40,7 @@ $artist = $album->getArtist();
         // Create a new Track Object
         $albumTrack = new Track($con, $trackID);    //Track ID
         $albumArtist = $albumTrack->getArtist();    //Artist
-        echo "<li class='trackListRow'>
+        echo "<li class='tracklistRow'>
                 <div class='trackCount'>
                   <i class='fas fa-play'></i>
                   <span class='trackNumber'>$i</span>

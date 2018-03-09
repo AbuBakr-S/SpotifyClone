@@ -5,7 +5,7 @@
           <div class="content">
             <span class="albumLink">
               <!-- Temp Placeholder Img -->
-              <img class="albumArtwork" src="http://www.salafi-islam.com/wp-content/uploads/2017/01/The-Best-Islamic-Music.jpg" alt="">
+              <img class="albumArtwork" src="http://alqalam.co.za/wp-content/uploads/2017/11/The-Best-Islamic-Music.jpg" alt="">
             </span>
 
             <div class="trackInfo">
