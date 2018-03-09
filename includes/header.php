@@ -23,8 +23,19 @@ if(isset($_SESSION['userLoggedIn'])){
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!-- JS -->
+    <script src="assets/js/script.js"></script>
   </head>
   <body>
+
+    <!-- TESTING JAVASCRIPT AUDIO -->
+    <script>
+      //  Create a new Instance of the Audio Class
+      var audioElement = new Audio();
+      audioElement.setTrack("assets/tracks/Saud_Al-Shuraim/Al-Fatiha.mp3");
+      audioElement.audio.play();  // References this.audio in the Audio Class
+    </script>
+    <!-- END -->
 
     <main class="mainContainer">
       <aside class="topContainer">
