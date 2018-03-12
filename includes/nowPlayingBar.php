@@ -1,3 +1,62 @@
+<?php
+
+  //  Select a Playlist of 10 random songs using the ID
+  $trackQuery = mysqli_query($con, "SELECT id FROM tracks ORDER BY RAND() LIMIT 10");
+
+  // Declare Array
+  $resultArray = array();
+
+  // Convery $trackQuery result into an Array to be Looped over
+  while($row = mysqli_fetch_array($trackQuery)) {
+    // Push the ID of the current row into the named Array. 10 Track IDs
+    array_push($resultArray, $row['id']);
+  }
+
+  // Convert Array to JSON to store data in a Universal Language
+  $jsonArray = json_encode($resultArray);   //Converts any PHP var to JSON
+
+?>
+
+<!-- Javascript -->
+<script>
+      // currentPlaylist defined in script.js
+      $(document).ready(function(){
+        currentPlaylist = <?php echo $jsonArray; ?>;
+        audioElement = new Audio();
+        // When page loads, select first trackID, newPlaylist and stop audio
+        setTrack(currentPlaylist[0], currentPlaylist, false);
+      });
+
+      // Create a SetTrack Function (Outside Public Settrack Function)
+      // newPlaylist will be created when new a track is selected from a different
+      //.. album while the old track is still playing. They will then switch and the
+      //.. new album will become the new playlist
+      // Play will be true or false
+      function setTrack(trackID, newPlaylist, play) {
+
+        audioElement.setTrack("assets/tracks/Saud_Al-Shuraim/Al-Fatiha.mp3");
+        if(play){
+          audioElement.play();
+        }
+      }
+
+// These functions can be called inside html buttons below
+function playTrack() {
+  // No space as same class at same level
+  $(".controlButton.play").hide();
+  $(".controlButton.pause").show();
+  audioElement.play();
+}
+
+function pauseTrack() {
+  $(".controlButton.pause").hide();
+  $(".controlButton.play").show();
+  audioElement.pause();
+}
+
+</script>
+
+
 <div class="nowPlayingBarContainer">
     <div class="nowPlayingBar">
         <div class="nowPlayingLeft">
@@ -36,12 +95,12 @@
                   <i class="fas fa-step-backward"></i>
                 </button>
 
-                <button class="controlButton play" title="Play Button" type="button" name="play">
+                <button class="controlButton play" title="Play Button" type="button" name="play" onclick="playTrack()">
                   <!-- Play Icon -->
                   <i class="far fa-play-circle"></i>
                 </button>
 
-                <button class="controlButton pause" title="Pause Button" type="button" name="pause" style="display: none;">
+                <button class="controlButton pause" title="Pause Button" type="button" name="pause" style="display: none;" onclick="pauseTrack()">
                   <!-- Pause Icon -->
                   <i class="far fa-pause-circle"></i>
                 </button>
