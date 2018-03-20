@@ -252,8 +252,11 @@ aside .topContainer {
   text-decoration: none;
 }
 
+/* Album Artwork */
 .gridViewItem img {
-  width: 100%;
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
 }
 
 .gridViewInfo {
