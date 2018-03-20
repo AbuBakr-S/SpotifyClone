@@ -32,9 +32,23 @@
       //.. album while the old track is still playing. They will then switch and the
       //.. new album will become the new playlist
       // Play will be true or false
-      function setTrack(trackID, newPlaylist, play) {
 
-        audioElement.setTrack("assets/tracks/Saud_Al-Shuraim/Al-Fatiha.mp3");
+      function setTrack(trackID, newPlaylist, play) {
+        //PHP loads before javascript
+        //An AJAX call will allow us to execute PHP without the page having to reload
+        // 1. URL of the AJAX Page to execute
+        // 2. Data to send { name: value }
+        // 3. Function Result
+        $.post("includes/handlers/ajax/getTrackJson.php", { nasheedID: trackID }, function(data){
+          //Access whatever is "echo" on URL
+
+          var track = JSON.parse(data);
+          
+          console.log(track);
+          audioElement.setTrack(track.path);
+          audioElement.play();
+        });
+
         if(play){
           audioElement.play();
         }
