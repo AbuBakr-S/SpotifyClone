@@ -27,18 +27,71 @@
         setTrack(currentPlaylist[0], currentPlaylist, false);
       });
 
+
+
+
+
+
+
+
+
       // Create a SetTrack Function (Outside Public Settrack Function)
       // newPlaylist will be created when new a track is selected from a different
       //.. album while the old track is still playing. They will then switch and the
       //.. new album will become the new playlist
       // Play will be true or false
-      function setTrack(trackID, newPlaylist, play) {
 
-        audioElement.setTrack("assets/tracks/Saud_Al-Shuraim/Al-Fatiha.mp3");
+      function setTrack(trackID, newPlaylist, play) {
+        //PHP loads before javascript
+        //An AJAX call will allow us to execute PHP without the page having to reload
+        // 1. URL of the AJAX Page to execute
+        // 2. Data to send { name: value }
+        // 3. Function Result
+
+        // ### TRACK ###
+        $.post("includes/handlers/ajax/getTrackJson.php", { nasheedID: trackID }, function(data){
+          //Access whatever is "echo" on URL
+
+          var track = JSON.parse(data);
+          console.log(track);
+
+          // trackName attribute
+          $(".trackName span").text(track.title);
+
+              // ### ARTIST ###
+              $.post("includes/handlers/ajax/getArtistJson.php", { artistID: track.artist }, function(data){
+                var artist = JSON.parse(data);
+                console.log(artist);
+                // artistName attribute
+                $(".artistName span").text(artist.name);
+                });
+
+          // ### ALBUM ###
+          $.post("includes/handlers/ajax/getAlbumJson.php", { albumID: track.album }, function(data){
+            var album = JSON.parse(data);
+            console.log(album);
+
+            // album attribute
+            // Add attribute to src, pass in artwork path
+            $(".albumLink img").attr("src", album.artworkPath);
+            });
+
+          audioElement.setTrack(track.path);
+          audioElement.play();
+        });
+
         if(play){
           audioElement.play();
         }
       }
+
+
+
+
+
+
+
+
 
 // These functions can be called inside html buttons below
 function playTrack() {
@@ -64,12 +117,12 @@ function pauseTrack() {
           <div class="content">
             <span class="albumLink">
               <!-- Temp Placeholder Img -->
-              <img class="albumArtwork" src="http://alqalam.co.za/wp-content/uploads/2017/11/The-Best-Islamic-Music.jpg" alt="">
+              <img class="albumArtwork" src="" alt="">
             </span>
 
             <div class="trackInfo">
               <span class="trackName">
-                <span>Ya Adheeman</span>
+                <span></span>
               </span>
 
               <span class="artistName">
