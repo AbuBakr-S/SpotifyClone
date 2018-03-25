@@ -173,14 +173,14 @@ function pauseTrack() {
 
             <!-- Player Progress Bar -->
             <div class="playbackBar">
-              <span class="progressTime current">00.00.00</span>
+              <span class="progressTime current">00.00</span>
                 <div class="progressBar">
                   <div class="progressBarBg">
                     <!-- The Actual Progress of the Track -->
                     <div class="progress"></div>
                   </div>
                 </div>
-              <span class="progressTime remaining">00.00.00</span>
+              <span class="progressTime remaining">00.00</span>
             </div>
 
 
