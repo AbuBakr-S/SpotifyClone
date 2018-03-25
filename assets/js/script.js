@@ -9,10 +9,10 @@ function Audio()  {
   this.audio = document.createElement('audio');   // Create HTML Audio Object (Built In)
 
   // Create a Set Track function
-  this.setTrack = function(src) {
-    //  HTML Audio Element has accessible attributes, e.g src
-    // The src of the audio file to be played = src parameter
-    this.audio.src = src;
+  // Change from src to getTrackJson data
+  this.setTrack = function(track) {
+    this.currentlyPlaying = track;    //Track currently playing
+    this.audio.src = track.path;    //path column in DB
   }
 
   this.play = function() {

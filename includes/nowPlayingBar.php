@@ -53,15 +53,12 @@
           //Access whatever is "echo" on URL
 
           var track = JSON.parse(data);
-          console.log(track);
-
           // trackName attribute
           $(".trackName span").text(track.title);
 
               // ### ARTIST ###
               $.post("includes/handlers/ajax/getArtistJson.php", { artistID: track.artist }, function(data){
                 var artist = JSON.parse(data);
-                console.log(artist);
                 // artistName attribute
                 $(".artistName span").text(artist.name);
                 });
@@ -69,15 +66,13 @@
           // ### ALBUM ###
           $.post("includes/handlers/ajax/getAlbumJson.php", { albumID: track.album }, function(data){
             var album = JSON.parse(data);
-            console.log(album);
-
             // album attribute
             // Add attribute to src, pass in artwork path
             $(".albumLink img").attr("src", album.artworkPath);
             });
 
-          audioElement.setTrack(track.path);
-          audioElement.play();
+          audioElement.setTrack(track);   //Accepts parsed JSON data
+          playTrack();
         });
 
         if(play){
@@ -95,6 +90,13 @@
 
 // These functions can be called inside html buttons below
 function playTrack() {
+
+  // Update Play Count if the Audio Element's currentTime property is 0, to confirm new song playing
+  if(audioElement.audio.currentTime == 0) {
+    $.post("includes/handlers/ajax/updatePlays.php", { nasheedID: audioElement.currentlyPlaying.id });    //'id' can be replaced with any column in tracks table
+  }
+
+
   // No space as same class at same level
   $(".controlButton.play").hide();
   $(".controlButton.pause").show();
