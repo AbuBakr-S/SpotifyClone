@@ -29,6 +29,13 @@ function updateTimeProgressBar(audio) {
 }
 
 
+// Update Volume
+function updateVolumeProgressbar(audio) {
+  var volume = audio.volume * 100;  //Calc perc. of total duration
+  $(".volumeBar .progress").css("width", volume + "%");  //e.g. .progress { width: 3% }
+}
+
+
 // Create a Class
 function Audio()  {
 
@@ -49,6 +56,12 @@ function Audio()  {
   if(this.duration) {   //If there is a duration...
     updateTimeProgressBar(this);
     }
+  });
+
+
+  //volumeChange Event Listener
+  this.audio.addEventListener("volumechange", function() {
+    updateVolumeProgressbar(this);    //'this' is the Audio Element
   });
 
 

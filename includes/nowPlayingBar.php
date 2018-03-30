@@ -26,7 +26,11 @@
         // When page loads, select first trackID, newPlaylist and stop audio
         setTrack(currentPlaylist[0], currentPlaylist, false);
 
-        // Drag progress Bar Along
+        //Sets Volume Bar to full progress
+        updateVolumeProgressbar(audioElement.audio);
+
+
+      /**** Dragging along PROGRESS BAR ****/
         $(".playbackBar .progressBar").mousedown(function(){
           mouseDown = true;
         });
@@ -43,6 +47,35 @@
             //Set time of song, depending on position of mouse
             timeFromOffset(e, this);    //event and object
         });
+      /**** END ****/
+
+      /**** Dragging along VOLUME BAR ****/
+        $(".volumeBar .progressBar").mousedown(function(){
+          mouseDown = true;
+        });
+
+        // When mouse moves inside progress bar
+        $(".volumeBar .progressBar").mousemove(function(e){
+          if(mouseDown){
+
+            var percentage = e.offsetX / $(this).width();   //Decimal Perc
+
+            // Check that volume isn't being dragged below 0 or above 1
+            if(percentage >= 0 && percentage <= 1){
+              audioElement.audio.volume = percentage;
+            }
+          }
+        });
+
+        $(".volumeBar .progressBar").mouseup(function(e){
+          var percentage = e.offsetX / $(this).width();   //Decimal Perc
+
+          // Check that volume isn't being dragged below 0 or above 1
+          if(percentage >= 0 && percentage <= 1){
+            audioElement.audio.volume = percentage;
+          }
+        });
+        /**** END ****/
 
         // Reset mouseDown if mouse release on any part of the page
         $(document).mouseup(function(){
@@ -142,8 +175,8 @@ function pauseTrack() {
 
 
 <div class="nowPlayingBarContainer">
-    <div class="nowPlayingBar">
-        <div class="nowPlayingLeft">
+  <div class="nowPlayingBar">
+    <div class="nowPlayingLeft">
 
           <div class="content">
             <span class="albumLink">
@@ -219,16 +252,20 @@ function pauseTrack() {
 
         <div class="nowPlayingRight">
           <div class="volumeBar">
+
             <button class="controlButton volume" title="Volume button" type="button" name="volume">
               <i class="fas fa-volume-up"></i>
             </button>
 
-            <div class="progressBarBg">
-              <!-- The Actual Progress of the Volume Level -->
-              <div class="progress"></div>
+            <div class="progressBar">
+              <div class="progressBarBg">
+                <!-- The Actual Progress of the Volume Level -->
+                <div class="progress"></div>
             </div>
-
           </div>
+
         </div>
-    </div>
+      </div>
+
+  </div>
 </div>
