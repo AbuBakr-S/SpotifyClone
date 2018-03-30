@@ -1,5 +1,6 @@
 var currentPlaylist = new Array();
 var audioElement;
+var mouseDown = false;
 
 function formatTime(seconds) {
   var time = Math.round(seconds);
@@ -66,5 +67,9 @@ function Audio()  {
     this.audio.pause();
   }
 
+  // Set current time to no. seconds passed in when progress bar is dragged along
+  this.setTime = function(seconds) {
+    this.audio.currentTime = seconds;
+  }
 
 }

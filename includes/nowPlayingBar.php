@@ -25,11 +25,40 @@
         audioElement = new Audio();
         // When page loads, select first trackID, newPlaylist and stop audio
         setTrack(currentPlaylist[0], currentPlaylist, false);
+
+        // Drag progress Bar Along
+        $(".playbackBar .progressBar").mousedown(function(){
+          mouseDown = true;
+        });
+
+        // When mouse moves inside progress bar
+        $(".playbackBar .progressBar").mousemove(function(e){
+          if(mouseDown){
+            //Set time of song, depending on position of mouse
+            timeFromOffset(e, this);    //event and object
+          }
+        });
+
+        $(".playbackBar .progressBar").mouseup(function(e){
+            //Set time of song, depending on position of mouse
+            timeFromOffset(e, this);    //event and object
+        });
+
+        // Reset mouseDown if mouse release on any part of the page
+        $(document).mouseup(function(){
+          mouseDown = false;
+        });
+
       });
 
-
-
-
+      // Get time of the track, from how far along the mouse is along the progress bar
+      function timeFromOffset(mouse, progressBar){
+        //mouse.offsetX is how far along on x axis the progress bar is
+        var percentage = mouse.offsetX / $(progressBar).width() * 100;   //same as $(".plabackBar .progressBar")
+        // if percentage = 50, set number of seconds to be 50% of total duration
+        var seconds = audioElement.audio.duration * (percentage / 100);   //percentage divide by 100 so less than zero
+        audioElement.setTime(seconds);
+      }
 
 
 
