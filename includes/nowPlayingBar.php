@@ -25,9 +25,13 @@
         audioElement = new Audio();
         // When page loads, select first trackID, newPlaylist and stop audio
         setTrack(currentPlaylist[0], currentPlaylist, false);
-
         //Sets Volume Bar to full progress
         updateVolumeProgressbar(audioElement.audio);
+
+        //Preventing controls from highlighting on mouse drag
+        $(".nowPlayingBarContainer").on("mousedown touchstart mousemove touchmove", function(e) {
+          e.preventDefault();    //Prevent normal behaviour
+        });
 
 
       /**** Dragging along PROGRESS BAR ****/
