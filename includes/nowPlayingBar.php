@@ -98,6 +98,19 @@
       }
 
 
+      //Got to Next Track in Current Playlist, random 10 selected on load
+      function nextTrack() {
+        //If currentIndex is at last element of the Array...e.g End of playlist
+        if(currentIndex == currentPlaylist.length - 1){   //-1 as Zero based
+          currentIndex = 0;//Reset
+        } else {
+          currentIndex++;
+        }
+
+        //Play indexed track
+        var trackToPlay = currentPlaylist[currentIndex];
+        setTrack(trackToPlay, currentPlaylist, true);
+      }
 
 
 
@@ -115,6 +128,8 @@
         // 3. Function Result
 
         // ### TRACK ###
+        currentIndex = currentPlaylist.indexOf(trackID);    //Find Array index of current track
+
         $.post("includes/handlers/ajax/getTrackJson.php", { nasheedID: trackID }, function(data){
           //Access whatever is "echo" on URL
 
@@ -226,7 +241,7 @@ function pauseTrack() {
                   <i class="far fa-pause-circle"></i>
                 </button>
 
-                <button class="controlButton next" title="Next Button" type="button" name="next">
+                <button class="controlButton next" title="Next Button" type="button" name="next" onclick="nextTrack()">
                   <!-- Next Icon -->
                   <i class="fas fa-step-forward"></i>
                 </button>
