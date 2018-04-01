@@ -100,6 +100,14 @@
 
       //Got to Next Track in Current Playlist, random 10 selected on load
       function nextTrack() {
+
+        //Check if Repeat is selected. TRUE -> restart track
+        if(repeat == true) {
+          audioElement.setTime(0);
+          playTrack();
+          return;
+        }
+
         //If currentIndex is at last element of the Array...e.g End of playlist
         if(currentIndex == currentPlaylist.length - 1){   //-1 as Zero based
           currentIndex = 0;//Reset
@@ -112,6 +120,15 @@
         setTrack(trackToPlay, currentPlaylist, true);
       }
 
+      function setRepeat() {
+        if(repeat == true){
+          repeat = false;
+          $(".controlButton .fa-redo-alt").css("color", "#a0a0a0");
+        } else {
+          repeat = true;   //Toggle set value
+          $(".controlButton .fa-redo-alt").css("color", "#07d159");
+        }
+      }
 
 
       // Create a SetTrack Function (Outside Public Settrack Function)
@@ -128,8 +145,11 @@
         // 3. Function Result
 
         // ### TRACK ###
-        currentIndex = currentPlaylist.indexOf(trackID);    //Find Array index of current track
 
+        currentIndex = currentPlaylist.indexOf(trackID);    //Find Array index of current track
+        pauseTrack();   //Before change, pause
+
+        //AJAX:
         $.post("includes/handlers/ajax/getTrackJson.php", { nasheedID: trackID }, function(data){
           //Access whatever is "echo" on URL
 
@@ -246,7 +266,7 @@ function pauseTrack() {
                   <i class="fas fa-step-forward"></i>
                 </button>
 
-                <button class="controlButton repeat" title="Repeat Button" type="button" name="repeat">
+                <button class="controlButton repeat" title="Repeat Button" type="button" name="repeat" onclick="setRepeat()">
                   <!-- Repeat Icon -->
                   <i class="fas fa-redo-alt"></i>
                 </button>

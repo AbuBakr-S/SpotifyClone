@@ -83,10 +83,6 @@ body {
   cursor: pointer;
 }
 
-.controlButton i:hover {
-  color: #07d159;
-}
-
 .logo {
   margin-bottom: 10px;
 }
