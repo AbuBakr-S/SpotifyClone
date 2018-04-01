@@ -45,6 +45,11 @@ function Audio()  {
   this.currentlyPlaying;    // This has no value at the moment
   this.audio = document.createElement('audio');   // Create HTML Audio Object (Built In)
 
+  // Play Next Track when finished
+  this.audio.addEventListener("ended", function() {
+    nextTrack();
+  });
+
   // 'canplay' Event Listener
   this.audio.addEventListener("canplay", function() {   //Audio Element has a canplay event
     // 'this' refers to the object that the event was called on
