@@ -98,6 +98,16 @@
       }
 
 
+      function prevTrack() {
+        //If 3 sec or more into current track, OR first track in the Playlist
+        if(audioElement.audio.currentTime >= 3 || currentIndex == 0) {
+          audioElement.setTime(0);    //Back to start of current Track
+        } else {
+          currentIndex--;   //Previous track in Playlist
+          setTrack(currentPlaylist[currentIndex], currentPlaylist, true); //Set currentPlaylist to previous track
+        }
+      }
+
       //Got to Next Track in Current Playlist, random 10 selected on load
       function nextTrack() {
 
@@ -246,7 +256,7 @@ function pauseTrack() {
                   <i class="fas fa-random"></i>
                 </button>
 
-                <button class="controlButton previous" title="Previous Button" type="button" name="previous">
+                <button class="controlButton previous" title="Previous Button" type="button" name="previous" onclick="prevTrack()">
                   <!-- Previous Icon -->
                   <i class="fas fa-step-backward"></i>
                 </button>
