@@ -169,6 +169,8 @@ body {
 
 .volumeBar .progressBar {
   width: 125px;
+  position: fixed;
+  margin-left: 42px;
 }
 
 /* Align volume level */

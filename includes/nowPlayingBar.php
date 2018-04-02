@@ -135,10 +135,35 @@
           repeat = false;
           $(".controlButton .fa-redo-alt").css("color", "#a0a0a0");
         } else {
-          repeat = true;   //Toggle set value
+          repeat = true;
           $(".controlButton .fa-redo-alt").css("color", "#07d159");
         }
       }
+
+      function setMute() {
+        if(audioElement.audio.muted  == true){
+          audioElement.audio.muted = false;
+          //If Volume Up
+          $(".volumeBar .controlButton i").toggleClass("fa-volume-up fa-volume-off");
+        } else {
+          //If Volume Muted
+          audioElement.audio.muted = true;   //Toggle set value
+          $(".volumeBar .controlButton i").toggleClass("fa-volume-off fa-volume-up");
+        }
+      }
+
+
+      function setShuffle() {
+        if(shuffle == true){
+          shuffle = false;
+          $(".controlButton .fa-random").css("color", "#a0a0a0");
+        } else {
+          shuffle = true;
+          $(".controlButton .fa-random").css("color", "#07d159");
+        }
+      }
+
+
 
 
       // Create a SetTrack Function (Outside Public Settrack Function)
@@ -251,7 +276,7 @@ function pauseTrack() {
           <div class="content playerControls">
 
             <div class="buttons">
-                <button class="controlButton shuffle" title="Shuffle Button" type="button" name="button">
+                <button class="controlButton shuffle" title="Shuffle Button" type="button" name="button" onclick="setShuffle()">
                   <!-- Shuffle Icon -->
                   <i class="fas fa-random"></i>
                 </button>
@@ -302,7 +327,7 @@ function pauseTrack() {
         <div class="nowPlayingRight">
           <div class="volumeBar">
 
-            <button class="controlButton volume" title="Volume button" type="button" name="volume">
+            <button class="controlButton volume" title="Volume button" type="button" name="volume" onclick="setMute()">
               <i class="fas fa-volume-up"></i>
             </button>
 
