@@ -161,9 +161,28 @@
           shuffle = true;
           $(".controlButton .fa-random").css("color", "#07d159");
         }
+
+        if(shuffle == true) {
+          //Randomise Shuffle (Duplicate Playlist, but shuffle)
+          shuffleArray(shufflePlaylist);
+        } else {
+          //Shuffle Deactivated
+          //Go back to regular playlist
+        }
       }
 
 
+      // Shuffle Array Function
+        // Pass in an Array and it will be Shuffled
+      function shuffleArray(a) {
+        var j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = a[i];
+            a[i] = a[j];
+            a[j] = x;
+        }
+    }
 
 
       // Create a SetTrack Function (Outside Public Settrack Function)
@@ -173,6 +192,18 @@
       // Play will be true or false
 
       function setTrack(trackID, newPlaylist, play) {
+
+        // 1. Will make two Playlists: i) Linear ii) Shuffled
+        // 2. i) currentPlaylist ii) shufflePlaylist
+        // 3. When setTrack, if playlist is different i.e. changed Album, currentPlaylist = newPlaylist
+        // 4. shufflePlaylist is also that same playlist, but is a copy, which is then shuffled
+        // 5. This allows us to go back to the non-shuffled playlist at anytime
+        if(newPlaylist != currentPlaylist){
+          currentPlaylist = newPlaylist;    //Independent
+          shufflePlaylist = currentPlaylist.slice();    //Independent
+          shuffleArray(shufflePlaylist);
+        }
+
         //PHP loads before javascript
         //An AJAX call will allow us to execute PHP without the page having to reload
         // 1. URL of the AJAX Page to execute
