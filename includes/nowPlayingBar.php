@@ -19,12 +19,13 @@
 
 <!-- Javascript -->
 <script>
-      // currentPlaylist defined in script.js
+      // newPlaylist created to make sure when the page loads,
+      //..currentPlaylist doesn't have a value yet to pass comparison in setTrack func.
       $(document).ready(function(){
-        currentPlaylist = <?php echo $jsonArray; ?>;
+        var newPlaylist = <?php echo $jsonArray; ?>;
         audioElement = new Audio();
         // When page loads, select first trackID, newPlaylist and stop audio
-        setTrack(currentPlaylist[0], currentPlaylist, false);
+        setTrack(newPlaylist[0], newPlaylist, false);
         //Sets Volume Bar to full progress
         updateVolumeProgressbar(audioElement.audio);
 
@@ -126,7 +127,9 @@
         }
 
         //Play indexed track
-        var trackToPlay = currentPlaylist[currentIndex];
+        //Which track to play?
+        //If shuffle is ON, play shufflePlaylist[currentIndex], otherwise, play currentPlaylist[currentIndex]
+        var trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
         setTrack(trackToPlay, currentPlaylist, true);
       }
 
@@ -162,12 +165,21 @@
           $(".controlButton .fa-random").css("color", "#07d159");
         }
 
+        //**********PRINT PLAYLISTS TO CONSOLE *********//
+        console.log(currentPlaylist);
+        console.log(shufflePlaylist);
+
         if(shuffle == true) {
           //Randomise Shuffle (Duplicate Playlist, but shuffle)
           shuffleArray(shufflePlaylist);
+          //Prevent same song from playing again when pressed NEXT.
+          //shufflePlaylist is randomised each time
+          //This tracks the id of the currently playing song in any shuffled order
+          currentIndex = shufflePlaylist.indexOf(audioElement.currentlyPlaying.id);
         } else {
           //Shuffle Deactivated
           //Go back to regular playlist
+          currentIndex = currentPlaylist.indexOf(audioElement.currentlyPlaying.id);
         }
       }
 
@@ -211,8 +223,12 @@
         // 3. Function Result
 
         // ### TRACK ###
+        if(shuffle == true){
+            currentIndex = shufflePlaylist.indexOf(trackID);    //Find Array index of current track
+        } else {
+          currentIndex = currentPlaylist.indexOf(trackID);    //Find Array index of current track
+        }
 
-        currentIndex = currentPlaylist.indexOf(trackID);    //Find Array index of current track
         pauseTrack();   //Before change, pause
 
         //AJAX:
